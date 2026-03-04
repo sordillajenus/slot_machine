@@ -1,4 +1,6 @@
-max_lines = 3
+MAX_LINES = 3
+MAX_BET = 1000000000
+MIN_BET = 1
 
 def deposit():
     while True:
@@ -16,7 +18,7 @@ def deposit():
 
 def get_number_of_lines():
     while True:
-        lines = input("Please enter a valid number of lines to bet on (1- " + str(max_lines) + ")?")
+        lines = input("Please enter a valid number of lines to bet on (1- " + str(MAX_LINES) + ")?")
         if lines.isdigit():
             lines = int(lines)
             if 1<= lines <= max_lines:
@@ -24,12 +26,26 @@ def get_number_of_lines():
             else:
                 print("Please enter a valid number of lines")
         else:
-            print("Please Enter a digit")       
+            print("Please Enter a digit")   
+
+    return lines            
+
+def get_amount_of_bet():
+    while True:
+        bet = input("Please Enter a valid amount of bet on each line ₱:")
+        if bet.isdigit():
+            bet = int(bet)
+            if MAX_BET >= bet >= MIN_BET:
+                break
+            else:
+                print(f"Amount must be between ₱{MIN_BET} - ₱{MAX_BET}")
+
 
 
 
 def main():
     balance = deposit()
     lines =   get_number_of_lines
+    bet = get_amount_of_bet
     print = (balance, lines)    
     
