@@ -9,18 +9,18 @@ COLS = 3
 
 symbol_count = {
     "bells" : 2,
-    "cherries" : 3,
-    "cheese" : 5,
+    "cherries" : 4,
+    "cheese" : 6,
     "banana" : 8
 }
 
 def get_slot_machine_spin(rows, cols, symbols):
     all_symbols = []
     for symbol, symbol_count in symbols.items():
-        for i in range(symbol_count):
+        for _ in range(symbol_count):
             all_symbols.append(symbol)
 
-    columns = [[]]
+    columns = [[], [], []]
     for _ in range(cols):
         column = []
         current_symbols = all_symbols[:]
@@ -32,6 +32,7 @@ def get_slot_machine_spin(rows, cols, symbols):
         columns.append(column)
 
     return columns
+
 def deposit():
     while True:
         amount = input("Please Enter the amount you want to deposit: ")
