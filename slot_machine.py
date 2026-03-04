@@ -47,5 +47,8 @@ def main():
     balance = deposit()
     lines =   get_number_of_lines
     bet = get_amount_of_bet
-    print = (balance, lines)    
+    total_bet = bet * lines
+    print(f"You are betting ₱{bet} on {lines} lines. Total bet is: {total_bet}")
+    
+       
     
