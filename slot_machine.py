@@ -21,7 +21,7 @@ def get_number_of_lines():
         lines = input("Please enter a valid number of lines to bet on (1- " + str(MAX_LINES) + ")?")
         if lines.isdigit():
             lines = int(lines)
-            if 1<= lines <= max_lines:
+            if 1<= lines <= MAX_LINES:
                 break
             else:
                 print("Please enter a valid number of lines")
@@ -45,10 +45,17 @@ def get_amount_of_bet():
 
 def main():
     balance = deposit()
-    lines =   get_number_of_lines
-    bet = get_amount_of_bet
-    total_bet = bet * lines
-    print(f"You are betting ₱{bet} on {lines} lines. Total bet is: {total_bet}")
+    lines =   get_number_of_lines()
+    while True:
+        bet = get_amount_of_bet()
+        total_bet = bet * lines
+
+        if total_bet > balance:
+            print(f"You do not have an enough balance. Your current balance is: ₱{balance}")
+        else:
+            break
+
     
-       
+    print(f"You are betting ₱{bet} on {lines} lines. Total bet is: {total_bet}")
+     
     
