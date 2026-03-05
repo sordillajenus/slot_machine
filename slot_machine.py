@@ -103,7 +103,7 @@ def get_amount_of_bet():
             print("Please enter a number.")
 
 
-def game():
+def game(balance):
     lines = get_number_of_lines()
     while True:
         bet = get_amount_of_bet()
@@ -121,7 +121,9 @@ def game():
     print_slot_machine(slots)
     winnings, winning_lines = check_winnings(slots, lines, bet, symbol_value)
     print(f"You won ₱{winnings}.")
-    print(f"You won on lines: {', '.join(str(line) for line in winning_lines)}")
+    print(f"You won on", *winning_lines)
+    return winnings - total_bet
+    
 
 
 def main():
@@ -131,7 +133,7 @@ def main():
         answer = input("Press enter to play (q to quit).")
         if answer == "q":
             break
-        balance += game()
+        balance += game(balance)
    
 
 main()
