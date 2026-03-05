@@ -14,6 +14,28 @@ symbol_count = {
     "banana" : 8
 }
 
+symbol_value = {
+    "bells" : 10,
+    "cherries" : 5,
+    "cheese" : 3,
+    "banana" : 2
+}
+
+def check_winnings(columns, lines, bet, values):
+    winnings = 0
+    winning_lines = []
+    for line in range(lines):
+        symbol = columns[0][line]
+        for column in columns:
+            symbol_to_check = column[line]
+            if symbol != symbol_to_check:
+                break
+        else:
+            winnings += values[symbol] * bet
+            winning_lines.append(line + 1)
+
+    return winnings, winning_lines
+
 def get_slot_machine_spin(rows, cols, symbols):
     all_symbols = []
     for symbol, symbol_count in symbols.items():
@@ -81,10 +103,8 @@ def get_amount_of_bet():
             print("Please enter a number.")
 
 
-def main():
-    balance = deposit()
+def game():
     lines = get_number_of_lines()
-
     while True:
         bet = get_amount_of_bet()
         total_bet = bet * lines
@@ -99,6 +119,19 @@ def main():
 
     slots = get_slot_machine_spin(ROWS, COLS, symbol_count)
     print_slot_machine(slots)
+    winnings, winning_lines = check_winnings(slots, lines, bet, symbol_value)
+    print(f"You won ₱{winnings}.")
+    print(f"You won on lines: {', '.join(str(line) for line in winning_lines)}")
 
+
+def main():
+    balance = deposit()
+    while True:
+        print(f"Current balance is: ₱{balance}")
+        answer = input("Press enter to play (q to quit).")
+        if answer == "q":
+            break
+        balance += game()
+   
 
 main()
