@@ -130,8 +130,8 @@ def main():
     balance = deposit()
     while True:
         print(f"Current balance is: ₱{balance}")
-        spin = input("Press enter to play (q to quit).")
-        if spin == "q":
+        user_input = input("Press enter to play (q to quit).")
+        if user_input == "q":
             break
         balance += spin(balance)
    
